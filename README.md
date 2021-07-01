@@ -1,4 +1,4 @@
 # Npendulo
-## By Pachas :v
+## Jesus Delgado Pachas
 
 
