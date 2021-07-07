@@ -2,15 +2,15 @@ import numpy as np
 import warnings
 warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 
-n = 6
-orden = 4
+n = 3
+orden = 5
 
-nrows = 3000
+ncols = 3000
 
-Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', max_rows = nrows).T
-Respuesta2 = np.loadtxt(f'{n}-P_1_RK{orden + 1}.txt', max_rows = nrows).T
+Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols)])
+Respuesta2 = np.loadtxt(f'{n}-P_1_RK{orden + 1}.txt', usecols = [i for i in range(ncols)])
+Respuesta3 = np.loadtxt(f'{n}-P_1_RK{orden + 4}.txt', usecols = [i for i in range(ncols)])
 
 
 l = np.ones(n)
@@ -49,29 +49,12 @@ def U(R):
     return np.array(Ep)
 
 plt.figure(figsize=(12, 8))
-plt.plot(Respuesta1[0], T(Respuesta1), 'k--')
-plt.plot(Respuesta2[0], T(Respuesta2), 'k:')
-plt.xlabel(r'$t$ (s)', fontsize = 18)
-plt.ylabel(r'$T$ (J)', fontsize = 18)
-plt.legend(['RK4', 'RK5'], fontsize = 18)
-plt.tick_params(labelsize = 15)
-plt.grid()
-
-plt.figure(figsize=(12, 8))
-plt.plot(Respuesta1[0], U(Respuesta1), 'k--')
-plt.plot(Respuesta2[0], U(Respuesta2), 'k:')
-plt.xlabel(r'$t$ (s)', fontsize = 18)
-plt.ylabel(r'$U$ (J)', fontsize = 18)
-plt.legend(['RK4', 'RK5'], fontsize = 18)
-plt.tick_params(labelsize = 15)
-plt.grid()
-
-plt.figure(figsize=(12, 8))
-plt.plot(Respuesta2[0], np.add(T(Respuesta1), U(Respuesta1)), 'b-')
-plt.plot(Respuesta2[0], np.add(T(Respuesta2), U(Respuesta2)), 'r-')
+plt.semilogy(Respuesta1[0], np.add(T(Respuesta1), U(Respuesta1)), 'b-')
+plt.semilogy(Respuesta2[0], np.add(T(Respuesta2), U(Respuesta2)), 'r-')
+plt.semilogy(Respuesta3[0], np.add(T(Respuesta3), U(Respuesta3)), 'g-')
 plt.xlabel(r'$t$ (s)', fontsize = 18)
 plt.ylabel(r'$E_M$ (J)', fontsize = 18)
-plt.legend(['RK4', 'RK5'], fontsize = 18)
+plt.legend(['RK4', 'RK5', 'RK8'], fontsize = 18)
 plt.tick_params(labelsize = 15)
 plt.grid()
 

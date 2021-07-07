@@ -4,13 +4,13 @@ warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-n = 6 ## Valor de N
-orden = 4 ## Orden para el metodo de Runge - Kutta 
+n = 4 ## Valor de N
+orden = 5 ## Orden para el metodo de Runge - Kutta 
 
-nrows = 3000 ## Filas a usar del .txt a analizar
+ncols = 3000 ## Colas a usar del .txt
 ## .txt a analizar
-Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', max_rows = nrows).T 
-Respuesta2 = np.loadtxt(f'{n}-P_2_RK{orden}.txt', max_rows = nrows).T
+Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols)])
+Respuesta2 = np.loadtxt(f'{n}-P_2_RK{orden}.txt', usecols = [i for i in range(ncols)])
 
 l = np.ones(n) ## Valores para las masas 
 m = np.ones(n) ## Valores para las longitudes de la cuerda
