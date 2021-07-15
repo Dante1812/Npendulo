@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-n = 3 ## Valor de N
+n = 1 ## Valor de N
 g = 9.81 ## Valor de g
 orden = 4 ## Orden para el metodo de Runge - Kutta
 
@@ -23,7 +23,7 @@ def Funcion(t, X): ## Funcion que calcula las 2n EDO's de primer orden
                 B[i][j] += m[k]
             if i == j:
                 A[i][j] *= l[j]
-                B[i][j] *= g * np.sin(X[i])
+                B[i][j] *= g*np.sin(X[i])
             else:
                 A[i][j] *= l[j]*np.cos(X[i]-X[j])
                 B[i][j] *= l[j]*X[n + j]**2*np.sin(X[i]-X[j])
@@ -97,15 +97,15 @@ def PenduloN(Funcion, X, t, t_max, h, orden): ## Funcion que calcula numericamen
         Res = RK8(Funcion, X, t, t_max, h)
     return Res
 
-x1 = np.ones((n, 1))*(3*np.pi/4) ## Condiciones iniciales de los angulos 
+x1 = np.ones((n, 1))*(np.pi*3/4) ## Condiciones iniciales de los angulos 
 v1 = np.ones((n, 1))*0 ## Condiciones iniciales de las velocidades angulares 
 X1 = np.append(x1, v1)
 
-x2 = np.ones((n, 1))*(3*np.pi/4 + 1e-4) ## Condiciones iniciales de los angulos con una perturbacion
+x2 = np.ones((n, 1))*(np.pi*3/4 + 1e-10) ## Condiciones iniciales de los angulos con una perturbacion
 v2 = np.ones((n, 1))*0 ## Condiciones iniciales de las velocidades angulares
 X2 = np.append(x2, v2)
 
-tmax = 30 ## Tiempo (en s) hasta donde sera realizado el calculo
+tmax = 10000 ## Tiempo (en s) hasta donde sera realizado el calculo
 Respuesta1 = PenduloN(Funcion, X1, 0, tmax, 0.01, orden)
 Respuesta2 = PenduloN(Funcion, X2, 0, tmax, 0.01, orden)         
 

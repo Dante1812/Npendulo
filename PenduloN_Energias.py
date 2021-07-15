@@ -3,23 +3,17 @@ import warnings
 warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 
-n = 3
-orden = 5
+n = 1
+orden = 4
 
 ncols = 3000
 
 Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols)])
 Respuesta2 = np.loadtxt(f'{n}-P_1_RK{orden + 1}.txt', usecols = [i for i in range(ncols)])
-Respuesta3 = np.loadtxt(f'{n}-P_1_RK{orden + 4}.txt', usecols = [i for i in range(ncols)])
-
+#Respuesta3 = np.loadtxt(f'{n}-P_1_RK{orden + 4}.txt', usecols = [i for i in range(ncols)])
 
 l = np.ones(n)
 m = np.ones(n)
-
-Theta1 = [rf'$\theta_{i+1}$' for i in range(n)]
-Theta2 = [rf'$\theta_{i+1}$' for i in range(n)]
-
-L = ['k--', 'k-.', 'k:', 'k-', 'k--', 'k-.', 'k:', 'k-']
 
 g = 9.81
 
@@ -48,23 +42,32 @@ def U(R):
         Ep.append(y)  
     return np.array(Ep)
 
+Et_RK4 = np.add(T(Respuesta1), U(Respuesta1))
+Et_RK5 = np.add(T(Respuesta2), U(Respuesta2))
+#Et_RK8 = np.add(T(Respuesta3), U(Respuesta3))
+
+E_RK4 = abs(Et_RK4 - Et_RK4[0])
+E_RK5 = abs(Et_RK5 - Et_RK5[0])
+#E_RK8 = abs(Et_RK8 - Et_RK8[0])
+
 plt.figure(figsize=(12, 8))
-plt.semilogy(Respuesta1[0], np.add(T(Respuesta1), U(Respuesta1)), 'b-')
-plt.semilogy(Respuesta2[0], np.add(T(Respuesta2), U(Respuesta2)), 'r-')
-plt.semilogy(Respuesta3[0], np.add(T(Respuesta3), U(Respuesta3)), 'g-')
+plt.plot(Respuesta1[0], E_RK4, 'b-')
+plt.plot(Respuesta1[0], E_RK5, 'r-')
+#plt.plot(Respuesta1[0], E_RK8, 'g-')
+plt.xlabel(r'$t$ (s)', fontsize = 18)
+plt.ylabel(r'$\Delta E_M$ (J)', fontsize = 18)
+plt.legend(['RK4', 'RK5', 'RK8'], fontsize = 18)
+plt.tick_params(labelsize = 15)
+plt.grid()
+
+plt.figure(figsize=(12, 8))
+plt.plot(Respuesta1[0], Et_RK4, 'b-')
+plt.plot(Respuesta2[0], Et_RK5, 'r-')
+#plt.plot(Respuesta3[0], Et_RK8, 'g-')
 plt.xlabel(r'$t$ (s)', fontsize = 18)
 plt.ylabel(r'$E_M$ (J)', fontsize = 18)
 plt.legend(['RK4', 'RK5', 'RK8'], fontsize = 18)
 plt.tick_params(labelsize = 15)
 plt.grid()
-
-#plt.figure(figsize=(12, 8))
-#for i in range(n):
-#    plt.semilogy(Respuesta2[0], abs(np.subtract(Respuesta1[i + 1], Respuesta2[i + 1])))
-#plt.xlabel(r'$t$ (s)', fontsize = 15)
-#plt.ylabel(r'$\Delta \theta$', fontsize = 15)
-#plt.tick_params(labelsize = 12.5)
-#plt.grid()
-
 
 plt.show()

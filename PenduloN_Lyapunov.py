@@ -3,17 +3,17 @@ import warnings
 warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 
-n = 3
-orden = 5
+n = 1
+orden = 4
 
-ncols_0 = 3000
+ncols_0 = 10000
 
 Respuesta1_comp = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols_0)])
 Respuesta2_comp = np.loadtxt(f'{n}-P_2_RK{orden}.txt', usecols = [i for i in range(ncols_0)])
 #Respuesta1_comp = np.loadtxt(f'{n}-P_1_RK{orden}_prueba.txt', usecols = [i for i in range(ncols_0)])
 #Respuesta2_comp = np.loadtxt(f'{n}-P_2_RK{orden}_prueba.txt', usecols = [i for i in range(ncols_0)])
 
-ncols = 800
+ncols = 10000
 
 Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols)])
 Respuesta2 = np.loadtxt(f'{n}-P_2_RK{orden}.txt', usecols = [i for i in range(ncols)])
@@ -49,13 +49,12 @@ Z1 = np.sqrt(y1)
 a0, a1, fit_x, fit = MinimosCuadrados(Respuesta1[0], np.log(Z))
 t = 1/a1*np.log(1/Z1[0])
 
-
 plt.figure(figsize=(12, 8))
 plt.semilogy(Respuesta1_comp[0], Z1, 'b-')
-plt.semilogy(fit_x, np.exp(fit), 'r-')
+#plt.semilogy(fit_x, np.exp(fit), 'r-')
 plt.xlabel(r'$t$ (s)', fontsize = 18)
 plt.ylabel(r'$\Delta r$', fontsize = 18)
-plt.legend(['Datos', 'Ajuste'], fontsize = 18)
+#plt.legend(['Datos', 'Ajuste'], fontsize = 18)
 plt.tick_params(labelsize = 15)
 plt.grid()
 

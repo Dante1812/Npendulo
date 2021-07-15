@@ -4,8 +4,8 @@ warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-n = 4 ## Valor de N
-orden = 5 ## Orden para el metodo de Runge - Kutta 
+n = 1 ## Valor de N
+orden = 4 ## Orden para el metodo de Runge - Kutta 
 
 ncols = 3000 ## Colas a usar del .txt
 ## .txt a analizar
@@ -158,14 +158,6 @@ plt.ticklabel_format(useMathText=True)
 #plt.title(r'Evolución de la energia total con el tiempo (2do pendulo)', fontsize = 15)
 plt.tick_params(labelsize = 15)
 plt.grid()
-
-#plt.figure(figsize=(12, 8))
-#for i in range(n):
-#    plt.semilogy(Respuesta2[0], abs(np.subtract(Respuesta1[i + 1], Respuesta2[i + 1])))
-#plt.xlabel(r'$t$ (s)', fontsize = 15)
-#plt.ylabel(r'$\Delta \theta$', fontsize = 15)
-#plt.tick_params(labelsize = 12.5)
-#plt.grid()
 
 ## Calculo de la distancia x e y de las masas para la animacion
 def DistanciaX(n, R): 
