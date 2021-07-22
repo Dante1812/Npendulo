@@ -110,16 +110,7 @@ Respuesta1 = PenduloN(Funcion, X1, 0, tmax, 0.01, orden)
 Respuesta2 = PenduloN(Funcion, X2, 0, tmax, 0.01, orden)         
 
 ## Para guardar los datos
-#np.savetxt(f'{n}-P_1_RK{orden}_prueba.txt', Respuesta1) 
-#np.savetxt(f'{n}-P_2_RK{orden}_prueba.txt', Respuesta2)
 np.savetxt(f'{n}-P_1_RK{orden}.txt', Respuesta1) 
 np.savetxt(f'{n}-P_2_RK{orden}.txt', Respuesta2)
 
-#Time = []
-#for _ in range(10):
-#    t0 = time.time()
-#    Respuesta1 = PenduloN(Funcion, X1, 0, tmax, 0.01, orden)
-#    t1 = time.time()
-#    Time.append(t1-t0)
-#print(f'Tiempo de ejecucion: {np.mean(Time)}')
 
