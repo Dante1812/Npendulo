@@ -5,9 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-n = 1 ## Valor de N
+n = 4 ## Valor de N
 g = 9.81 ## Valor de g
-orden = 4 ## Orden para el metodo de Runge - Kutta
+orden = 5 ## Orden para el metodo de Runge - Kutta
 
 m = np.ones(n) ## Valores para las masas
 l = np.ones(n) ## Valores para las longitudes de la cuerda
@@ -105,7 +105,7 @@ x2 = np.ones((n, 1))*(np.pi*3/4 + 1e-10) ## Condiciones iniciales de los angulos
 v2 = np.ones((n, 1))*0 ## Condiciones iniciales de las velocidades angulares
 X2 = np.append(x2, v2)
 
-tmax = 10000 ## Tiempo (en s) hasta donde sera realizado el calculo
+tmax = 30 ## Tiempo (en s) hasta donde sera realizado el calculo
 Respuesta1 = PenduloN(Funcion, X1, 0, tmax, 0.01, orden)
 Respuesta2 = PenduloN(Funcion, X2, 0, tmax, 0.01, orden)         
 

@@ -3,7 +3,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 
-n = 4
+n = 10
 orden = 5
 
 ncols_0 = 3000
@@ -11,7 +11,7 @@ ncols_0 = 3000
 Respuesta1_comp = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols_0)])
 Respuesta2_comp = np.loadtxt(f'{n}-P_2_RK{orden}.txt', usecols = [i for i in range(ncols_0)])
 
-ncols = 3000
+ncols = 1100
 
 Respuesta1 = np.loadtxt(f'{n}-P_1_RK{orden}.txt', usecols = [i for i in range(ncols)])
 Respuesta2 = np.loadtxt(f'{n}-P_2_RK{orden}.txt', usecols = [i for i in range(ncols)])
